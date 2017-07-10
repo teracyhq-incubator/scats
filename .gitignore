@@ -1,0 +1,68 @@
+*.log
+*.swp
+*.pyc
+.DS_Store
+Thumbs.db
+node_modules
+.tmp
+.sass-cache
+bower_components
+dist
+.idea
+*.iml
+*/.sass-cache
+*/node_modules
+node/static/avatars
+node/static/assets/embed
+node/static/data
+node/static/data-tmp/*
+!node/static/_dist/.gitkeep
+node/static/assets/embed
+node/static/_dist/*
+!node/static/_dist/README
+
+# take favicon.ico dynamically when $ grunt build from app/images/favicon.ico
+node/static/favicon.ico
+
+# Ignore email smtp username/pass
+emails/config/mailsetup.json
+
+.project
+org.eclipse.core.resources.prefs
+settings.xml
+
+
+# Ignore wp-config information
+docs-wordpress/htdocs/wp-config-local.php
+md_sml.jpg
+
+reporttest.cfm
+node/static/downloadtutorials/html
+
+# lettuce report
+lettucetests.xml
+tests/features/screenshots
+
+node/static/assets/css/*
+!node/static/assets/css/.gitkeep
+
+node/static/assets/js/*.min.js
+
+app/capture/
+# cfsite usemin
+node/static/assets/scripts/
+node/static/assets/styles/
+_cfdist
+
+# Eclipse IDE local config files ignore
+/infinitest.filters
+.project
+
+# e2e
+target/
+!.gitkeep
+.classpath
+.settings/
+src/main/resources/
+src/test/java/runner/
+src/test/resources/tempfeatures/
