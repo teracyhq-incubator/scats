@@ -1,4 +1,4 @@
-package teracy.coreactions;
+package org.teracy.scats.core.actions;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;

@@ -2,10 +2,9 @@ package runner;
 
 import java.io.IOException;
 import org.junit.Test;
-
-import teracy.coreactions.PageCore;
-import teracy.utils.FileUtil;
-import teracy.utils.SplitTestRunner;
+import org.teracy.scats.core.actions.PageCore;
+import org.teracy.scats.utils.FileUtil;
+import org.teracy.scats.utils.SplitTestRunner;
 
 public class GenerateParallelTest {
 	@Test
@@ -15,7 +14,7 @@ public class GenerateParallelTest {
 				+ "import org.junit.runner.RunWith;" + "\n" + "import cucumber.api.CucumberOptions;" + "\n"
 				+ "@RunWith(CucumberWithSerenity.class)" + "\n" + "@CucumberOptions(" + "\n"
 				+ "features={\"src/test/resources/tempfeatures/testrunner${index}\"}," + "\n"
-				+ "glue={\"scenariosteps\",\"teracy.coresteps\"}," + "\n"
+				+ "glue={\"scenariosteps\",\"org.teracy.scats.core.steps\"}," + "\n"
 				+ "//tags = {\"@smoke\",\"~@firefox\",\"~@fail\"}," + "\n"
 				+ "plugin={\"junit:target/testrunner${index}/cucumber.xml\"" + "\n"
 				+ "		,\"html:target/testrunner${index}\"" + "\n"

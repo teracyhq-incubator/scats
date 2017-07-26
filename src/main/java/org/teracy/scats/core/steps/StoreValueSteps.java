@@ -1,14 +1,15 @@
-package teracy.coresteps;
+package org.teracy.scats.core.steps;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.teracy.scats.core.actions.PageCore;
+import org.teracy.scats.utils.DateTime;
+import org.teracy.scats.utils.RandomData;
+import org.teracy.scats.utils.TestLogger;
+
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Step;
-import teracy.coreactions.PageCore;
-import teracy.utils.DateTime;
-import teracy.utils.RandomData;
-import teracy.utils.TestLogger;
 
 public class StoreValueSteps extends PageCore {
 	@When("^[s|S]tore the text of the element \"([^\"]*)\" in variable \"([^\"]*)\"$")

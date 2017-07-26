@@ -1,11 +1,11 @@
-package teracy.coresteps;
+package org.teracy.scats.core.steps;
 
 import org.junit.Assert;
+import org.teracy.scats.core.actions.DialogAndAlert;
 
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
-import teracy.coreactions.DialogAndAlert;
 
 public class DialogAndAlertSteps {
 	@Steps

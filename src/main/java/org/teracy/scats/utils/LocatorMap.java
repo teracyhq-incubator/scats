@@ -1,4 +1,4 @@
-package teracy.utils;
+package org.teracy.scats.utils;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,8 +1,8 @@
-package teracy.utils;
+package org.teracy.scats.utils;
 
 import java.io.File;
 
-import teracy.coreactions.PageCore;
+import org.teracy.scats.core.actions.PageCore;
 
 public class SplitTestRunner {
 	/**

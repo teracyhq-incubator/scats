@@ -1,4 +1,4 @@
-package teracy.coreactions;
+package org.teracy.scats.core.actions;
 
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -11,10 +11,10 @@ import javax.imageio.ImageIO;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.teracy.scats.utils.TestLogger;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
-import teracy.utils.TestLogger;
 
 public class ManageFile extends ScenarioSteps{
 	/**

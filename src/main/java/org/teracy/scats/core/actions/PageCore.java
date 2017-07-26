@@ -1,4 +1,4 @@
-package teracy.coreactions;
+package org.teracy.scats.core.actions;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,14 +15,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.teracy.scats.utils.DateTime;
+import org.teracy.scats.utils.LocatorMap;
+import org.teracy.scats.utils.RandomData;
+import org.teracy.scats.utils.TestLogger;
 
 import cucumber.api.Scenario;
 import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.Step;
-import teracy.utils.DateTime;
-import teracy.utils.LocatorMap;
-import teracy.utils.RandomData;
-import teracy.utils.TestLogger;
 
 public class PageCore extends PageObject{
 	protected static int WAIT_INTERVAL = 50; // milliseconds

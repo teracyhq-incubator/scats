@@ -1,17 +1,17 @@
-package teracy.coresteps;
+package org.teracy.scats.core.steps;
 
 import java.util.Set;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.teracy.scats.core.actions.MainAction;
+import org.teracy.scats.core.actions.PageCore;
+import org.teracy.scats.utils.TestLogger;
 
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
-import teracy.coreactions.MainAction;
-import teracy.coreactions.PageCore;
-import teracy.utils.TestLogger;
 
 public class MainActionSteps extends PageCore {
 	@Steps

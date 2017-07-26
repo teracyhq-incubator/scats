@@ -1,4 +1,8 @@
-package teracy.coresteps;
+package org.teracy.scats.core.steps;
+
+import org.teracy.scats.core.actions.MainAction;
+import org.teracy.scats.core.actions.PageCore;
+import org.teracy.scats.utils.TestLogger;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -6,9 +10,6 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
-import teracy.coreactions.MainAction;
-import teracy.coreactions.PageCore;
-import teracy.utils.TestLogger;
 
 public class BaseSteps extends PageCore{
 	public static boolean wantsToQuit = false;

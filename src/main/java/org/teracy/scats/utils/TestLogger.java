@@ -1,4 +1,4 @@
-package teracy.utils;
+package org.teracy.scats.utils;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;

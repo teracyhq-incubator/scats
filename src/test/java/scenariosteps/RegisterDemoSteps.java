@@ -1,9 +1,10 @@
 package scenariosteps;
 
+import org.teracy.scats.core.steps.BaseSteps;
+import org.teracy.scats.core.steps.MainActionSteps;
+
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
-import teracy.coresteps.BaseSteps;
-import teracy.coresteps.MainActionSteps;
 
 public class RegisterDemoSteps {
 	@Steps

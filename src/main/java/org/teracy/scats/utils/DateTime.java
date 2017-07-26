@@ -1,10 +1,10 @@
-package teracy.utils;
+package org.teracy.scats.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import teracy.utils.TestLogger;
+import org.teracy.scats.utils.TestLogger;
 
 public class DateTime {
 	/**
