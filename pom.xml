@@ -9,7 +9,7 @@
 	<description>TERACY SELENIUM TEST</description>
 
 	<properties>
-		<maven.test.skip>false</maven.test.skip>
+		<maven.test.skip>true</maven.test.skip>
 		<selenium-java.version>3.4.0</selenium-java.version>
 		<testng.version>6.9.4</testng.version>
 		<cucumber.version>1.2.5</cucumber.version>
@@ -25,6 +25,7 @@
 		<surefire.maven.plugin.version>2.20</surefire.maven.plugin.version>
 		<serenity.version>1.5.0-rc.1</serenity.version>
 		<serenity.cucumber.version>1.1.36</serenity.cucumber.version>
+		<appium.version>4.1.2</appium.version>
 		<thread_number>4</thread_number>
 	</properties>
 
@@ -69,6 +70,11 @@
 			<artifactId>serenity-cucumber</artifactId>
 			<version>${serenity.cucumber.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>${appium.version}</version>
 		</dependency>
 	</dependencies>
 
