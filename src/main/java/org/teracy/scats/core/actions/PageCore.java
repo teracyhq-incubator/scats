@@ -24,7 +24,7 @@ import cucumber.api.Scenario;
 import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.Step;
 
-public class PageCore extends PageObject{
+public class PageCore extends PageObject {
 	protected static int WAIT_INTERVAL = 50; // milliseconds
 	public static Properties config = new Properties();
 	public static Properties elements = new Properties();
@@ -39,6 +39,7 @@ public class PageCore extends PageObject{
 	public static Boolean isUsingServerMail;
 	String defaultWindow = "";
 	public static HashMap<String, String> listVar = new HashMap<String, String>();
+
 	/**
 	 * maximize window
 	 * 
@@ -47,7 +48,6 @@ public class PageCore extends PageObject{
 	public void maximizeTheWindow() {
 		getDriver().manage().window().maximize();
 	}
-	
 
 	/**
 	 * open the page
@@ -58,45 +58,45 @@ public class PageCore extends PageObject{
 		open();
 		failfast = Boolean.valueOf(getConfig("failfast"));
 		elements = LocatorMap.loadingObjectPropertiesFromPackage("elements");
-  		config = LocatorMap.loadConfigSys();
+		config = LocatorMap.loadConfigSys();
 		timeout = Integer.valueOf(getConfig("timeout"));
 		serverMail = getConfig("servermail");
 		isUsingServerMail = Boolean.valueOf(getConfig("isusingservermail"));
-		maximizeTheWindow();
+		if (!getConfig("webdriver.driver").contains("appium"))
+			maximizeTheWindow();
 	}
-	
+
 	/**
 	 * Take screen shot
+	 * 
 	 * @param scenario
 	 */
-	public void takeScreenshot(Scenario scenario)
-	{
+	public void takeScreenshot(Scenario scenario) {
 		final byte[] screenshot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
 		scenario.embed(screenshot, "image/png");
 	}
-	
+
 	/**
 	 * takeSnapShot
 	 */
 
-    public void takeSnapShot(){
-    	DateTime dateTime = new DateTime();
-        TakesScreenshot scrShot =((TakesScreenshot)getDriver());
-        File srcFile=scrShot.getScreenshotAs(OutputType.FILE);
-        File destFile=new File(dateTime.getDateByTextFormat("ddmmyyyyhhmmss")+".png");
-        try {
+	public void takeSnapShot() {
+		DateTime dateTime = new DateTime();
+		TakesScreenshot scrShot = ((TakesScreenshot) getDriver());
+		File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		File destFile = new File(dateTime.getDateByTextFormat("ddmmyyyyhhmmss") + ".png");
+		try {
 			FileUtils.copyFile(srcFile, destFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
-	
+	}
 
 	/**
 	 * wait for page loading
 	 */
-    @Step
+	@Step
 	public void waitForPageToLoad() {
 		String pageLoadStatus = null;
 		int count = 1;
@@ -221,11 +221,11 @@ public class PageCore extends PageObject{
 		locator = LocatorMap.getActualValueFromElementList(target.replace(" ", "").toLowerCase()).toString();
 		if (param.length > 0) {
 			for (int i = 0; i < param.length; i++) {
-				TestLogger.info(target+": "+locator);
+				TestLogger.info(target + ": " + locator);
 				locator = locator.replace("$param" + String.valueOf(i + 1), param[i]);
 			}
 		}
-		TestLogger.info(target+": "+locator);
+		TestLogger.info(target + ": " + locator);
 		try {
 			WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
 			wait.until(ExpectedConditions.presenceOfElementLocated(getObject(locator)));
@@ -248,7 +248,7 @@ public class PageCore extends PageObject{
 		String opParam = param.length > 0 ? param[0] : "";
 		String locator = LocatorMap.getActualValueFromElementList(target.replace(" ", "").toLowerCase()).toString()
 				.replace("$param", opParam);
-		TestLogger.info(target+": "+locator);
+		TestLogger.info(target + ": " + locator);
 		try {
 			WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(getObject(locator)));
@@ -271,7 +271,7 @@ public class PageCore extends PageObject{
 		String opParam = param.length > 0 ? param[0] : "";
 		String locator = LocatorMap.getActualValueFromElementList(target.replace(" ", "").toLowerCase()).toString()
 				.replace("$param", opParam);
-		TestLogger.info(target+": "+locator);
+		TestLogger.info(target + ": " + locator);
 		try {
 			WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
 			wait.until(ExpectedConditions.elementToBeClickable(getObject(locator)));
@@ -304,7 +304,7 @@ public class PageCore extends PageObject{
 		TestLogger.info(jquery);
 		return jse.executeScript(jquery).toString();
 	}
-	
+
 	/**
 	 * Get actual string after processing randomdata
 	 * 
@@ -315,7 +315,7 @@ public class PageCore extends PageObject{
 		text = RandomData.getRandomString(text);
 		return text;
 	}
-	
+
 	/**
 	 * verify element is enable to click or not
 	 * 
@@ -375,7 +375,7 @@ public class PageCore extends PageObject{
 	public boolean isEnable(String target, String... param) {
 		return waitForGetElementPresent(target, param).isEnabled();
 	}
-	
+
 	/**
 	 * get text on page
 	 * 

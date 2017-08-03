@@ -6,8 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Properties;
 
 public class LocatorMap {
@@ -74,21 +72,20 @@ public class LocatorMap {
 	public static Properties loadingObjectPropertiesFromPackage(String objectRepos){
 		BufferedReader fs = null;
 		properties = new Properties();
-		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		URL url = classLoader.getResource(objectRepos);
+		String workingDir=System.getProperty("user.dir");
 		try {
-			File folder = new File(url.toURI());
+			File folder = new File((workingDir +fseparator+"src/test/resources/"+objectRepos).replace("\\", fseparator).replace("/", fseparator));
+			TestLogger.info(folder.getAbsolutePath());
 			if (folder.isDirectory()) {
 				File[] files = folder.listFiles();
 				for (File file : files) {
+					TestLogger.info(file.getAbsolutePath());
 					fs = new BufferedReader(
 				            new InputStreamReader(
 				                       new FileInputStream(file), "UTF8"));
 					properties.load(fs);					
 				}
 			}
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

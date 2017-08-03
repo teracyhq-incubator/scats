@@ -4,8 +4,9 @@
 	<groupId>org.teracy.scats</groupId>
 	<artifactId>scats-core</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
-	<name>teracy selenium test</name>
+	<name>scats-core</name>
 	<packaging>jar</packaging>
+	<url>http://maven.apache.org</url>
 	<description>TERACY SELENIUM TEST</description>
 
 	<properties>
