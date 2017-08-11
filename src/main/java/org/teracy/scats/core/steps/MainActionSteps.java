@@ -46,26 +46,26 @@ public class MainActionSteps extends PageCore {
 	/************************* button ************************************************/
 	@When("^[d|D]ouble-click on the \"([^\"]*)\"$")
 	@Step("^[d|D]ouble-click on the \"([^\"]*)\"$")
-	public void doubleClickOn(String element) throws Throwable {
-		mainAction.doubleClick(element);
+	public void doubleClickOn(String element,String...param) throws Throwable {
+		mainAction.doubleClick(element,param);
 	}
 
 	@When("^[r|R]ight click on the \"([^\"]*)\"$")
 	@Step("^[r|R]ight click on the \"([^\"]*)\"$")
-	public void rightClickOn(String element) throws Throwable {
-		mainAction.rightClick(element);
+	public void rightClickOn(String element,String...param) throws Throwable {
+		mainAction.rightClick(element,param);
 	}
 	
 	@When("^[c|C]lick on the \"([^\"]*)\"$")
 	@Step("^[c|C]lick on the \"([^\"]*)\"$")
-	public void clickOn(String element) throws Throwable {
-		mainAction.click(element);
+	public void clickOn(String element,String...param) throws Throwable {
+		mainAction.click(element,param);
 	}
 	
 	@When("^[c|C]lick on the \"([^\"]*)\" and switch to the second tab$")
 	@Step("^[c|C]lick on the \"([^\"]*)\" and switch to the second tab$")
-	public void clickSwitchToSecondTab(String element) throws Throwable {
-		mainAction.click(element);
+	public void clickSwitchToSecondTab(String element,String...param) throws Throwable {
+		mainAction.click(element,param);
 		pause(2000);
 		String base = getDriver().getWindowHandle();
 		Set<String> set = getDriver().getWindowHandles();
@@ -75,8 +75,8 @@ public class MainActionSteps extends PageCore {
 
 	@When("^[c|C]lick on the \"([^\"]*)\" and switch to the first tab$")
 	@Step("^[c|C]lick on the \"([^\"]*)\" and switch to the first tab$")
-	public void clickSwitchToFirstTab(String element) throws Throwable {
-		mainAction.click(element);
+	public void clickSwitchToFirstTab(String element,String...param) throws Throwable {
+		mainAction.click(element,param);
 		pause(2000);
 		String base = getDriver().getWindowHandle();
 		Set<String> set = getDriver().getWindowHandles();
@@ -86,8 +86,8 @@ public class MainActionSteps extends PageCore {
 	
 	@When("^[h|H]over the mouse on the \"([^\"]*)\"$")
 	@Step("^[h|H]over the mouse on the \"([^\"]*)\"$")
-	public void hoverOn(String element){
-		WebElement moveToElement = waitForGetElementPresent(element);
+	public void hoverOn(String element,String...param){
+		WebElement moveToElement = waitForGetElementPresent(element,param);
 		Actions builder = new Actions(getDriver());
 		Action dragAndDrop = builder.moveToElement(moveToElement).release(moveToElement).build();
 		dragAndDrop.perform();
@@ -97,14 +97,14 @@ public class MainActionSteps extends PageCore {
 	/************************* textbox ************************************************/
 	@When("^[f|F]ill value \"([^\"]*)\" to the field \"([^\"]*)\"$")
 	@Step("^[f|F]ill value \"([^\"]*)\" to the field \"([^\"]*)\"$")
-	public void enterIntoFieldWithValue(String text,String element) throws Throwable {
-		mainAction.sendKey(element,text);
+	public void enterIntoFieldWithValue(String text,String element,String...param) throws Throwable {
+		mainAction.sendKey(element,text,param);
 	}
 	
 	@When("^[f|F]ill value \"([^\"]*)\" to the field \"([^\"]*)\" and store value into variable \"([^\"]*)\"$")
 	@Step("^[f|F]ill value \"([^\"]*)\" to the field \"([^\"]*)\" and store value into variable \"([^\"]*)\"$")
-	public void enterTntoTheFieldWithValueAndStoreVariable(String value,String element, String var) {
-		value=mainAction.sendKey(element,value);
+	public void enterTntoTheFieldWithValueAndStoreVariable(String value,String element, String var,String...param) {
+		value=mainAction.sendKey(element,value,param);
 		listVar.put(var, value);
 		TestLogger.info(listVar.get(var));
 	}
@@ -113,39 +113,51 @@ public class MainActionSteps extends PageCore {
 	/************************* checkbox ************************************************/
 	@When("^[u|U]ncheck on the \"([^\"]*)\"$")
 	@Step("^[u|U]ncheck on the \"([^\"]*)\"$")
-	public void uncheckOn(String element) throws Throwable {
-		if(isSelected(element))
-			mainAction.click(element);
+	public void uncheckOn(String element,String...param) throws Throwable {
+		if(isSelected(element,param))
+			mainAction.click(element,param);
 	}
 
 	@When("^[c|C]heck on the \"([^\"]*)\"$")
 	@Step("^[c|C]heck on the \"([^\"]*)\"$")
-	public void checkOn(String element) throws Throwable {
-		if(!isSelected(element))
-			mainAction.click(element);
+	public void checkOn(String element,String...param) throws Throwable {
+		if(!isSelected(element,param))
+			mainAction.click(element,param);
 	}
 	/************************* checkbox ************************************************/
 	/************************* combobox/listbox ************************************************/
 	@When("^[s|S]elect value \"([^\"]*)\" from the drop down \"([^\"]*)\"$")
 	@Step("^[s|S]elect value \"([^\"]*)\" from the drop down \"([^\"]*)\"$")
-	public void selectByValueFromDropDown(String value, String element)throws Throwable {
-		mainAction.selectByValueDropDown(value, element);
+	public void selectByValueFromDropDown(String value, String element,String...param)throws Throwable {
+		mainAction.selectByValueDropDown(value, element,param);
 	}
 
 	@When("^[s|S]elect text \"([^\"]*)\" from the drop down \"([^\"]*)\"$")
 	@Step("^[s|S]elect text \"([^\"]*)\" from the drop down \"([^\"]*)\"$")
-	public void selectByTextFromDropDown(String value, String element)throws Throwable {
-		mainAction.selectByTextDropDown(value, element);
+	public void selectByTextFromDropDown(String value, String element,String...param)throws Throwable {
+		mainAction.selectByTextDropDown(value, element,param);
 	}
 
 	@When("^[s|S]elect the index (\\d+) from the drop down \"([^\"]*)\"$")
 	@Step("^[s|S]elect the index (\\d+) from the drop down \"([^\"]*)\"$")
-	public void selectByIndexFromDropDown(int indexOption, String element) throws Throwable {
-		mainAction.selectByIndexDropDown(indexOption, element);
+	public void selectByIndexFromDropDown(int indexOption, String element,String...param) throws Throwable {
+		mainAction.selectByIndexDropDown(indexOption, element, param);
 	}
 
 	/************************* combobox/listbox ************************************************/
-
+	/************************* iframe ************************************************/
+	@When("^[s|S]witch to iframe \"([^\"]*)\"$")
+	@Step("^[s|S]witch to iframe \"([^\"]*)\"$")
+	public void switchToIFrame(String iframeName) throws Throwable {
+		mainAction.switchToIFrame(iframeName);
+	}
+	
+	@When("^[s|S]witch to parent frame$")
+	@Step("^[s|S]witch to parent frame$")
+	public void switchToParentIFrame() throws Throwable {
+		mainAction.swichBackToParentFrame();
+	}
+	/************************* iframe ************************************************/
 }
 
 

@@ -17,55 +17,55 @@ public class VerificationSteps extends PageCore {
 	
 	@When("^[t|T]he \"([^\"]*)\" should be disabled$")
 	@Step("^[t|T]he \"([^\"]*)\" should be disabled$")
-	public void theElementShouldBeDisabled(String element) throws Throwable {
-		Assert.assertEquals(element + " is enabled ", isEnabled(element), false);
+	public void theElementShouldBeDisabled(String element,String...param) throws Throwable {
+		Assert.assertEquals(element + " is enabled ", isEnabled(element,param), false);
 	}
 
 	@When("^[t|T]he \"([^\"]*)\" should be enabled$")
 	@Step("^[t|T]he \"([^\"]*)\" should be enabled$")
-	public void theElementShouldBeEnabled(String element) throws Throwable {
+	public void theElementShouldBeEnabled(String element,String...param) throws Throwable {
 		pause(1000);
-		Assert.assertEquals(element + " is disabled ", isEnabled(element), true);
+		Assert.assertEquals(element + " is disabled ", isEnabled(element,param), true);
 	}
 
 	@When("^[t|T]he \"([^\"]*)\" checkbox should be unchecked$")
 	@Step("^[t|T]he \"([^\"]*)\" checkbox should be unchecked$")
-	public void theCheckboxShouldBeUnchecked(String element) throws Throwable {
-		Assert.assertEquals(element + " is checked ", isSelected(element), false);
+	public void theCheckboxShouldBeUnchecked(String element,String...param) throws Throwable {
+		Assert.assertEquals(element + " is checked ", isSelected(element,param), false);
 	}
 
 	@When("^[t|T]he \"([^\"]*)\" checkbox should be checked$")
 	@Step("^[t|T]he \"([^\"]*)\" checkbox should be checked$")
-	public void theCheckboxShouldBeChecked(String element) throws Throwable {
-		Assert.assertEquals(element + " is unchecked ", isSelected(element), true);
+	public void theCheckboxShouldBeChecked(String element,String...param) throws Throwable {
+		Assert.assertEquals(element + " is unchecked ", isSelected(element,param), true);
 	}
 
 	@When("^[t|T]he text of element \"(.*?)\" should be \"(.*?)\"$")
 	@Step("^[t|T]he text of element \"(.*?)\" should be \"(.*?)\"$")
-	public void theTextElementShouldBeText(String target, String value) throws Throwable {
-		Assert.assertTrue(waitForGetElementPresent(target).getText() + " is not equal " + value,
-				waitForGetElementPresent(target).getText().equals(value));
+	public void theTextElementShouldBeText(String target, String value,String...param) throws Throwable {
+		Assert.assertTrue(waitForGetElementPresent(target,param).getText() + " is not equal " + value,
+				waitForGetElementPresent(target,param).getText().equals(value));
 	}
 
 	@When("^[t|T]he text of element \"(.*?)\" should not be \"(.*?)\"$")
 	@Step("^[t|T]he text of element \"(.*?)\" should not be \"(.*?)\"$")
-	public void theTextElementShouldNotBeValue(String target, String value) throws Throwable {
-		Assert.assertFalse(waitForGetElementPresent(target).getText() + " is equal " + value,
-				waitForGetElementPresent(target).getText().equals(value));
+	public void theTextElementShouldNotBeValue(String target, String value,String...param) throws Throwable {
+		Assert.assertFalse(waitForGetElementPresent(target,param).getText() + " is equal " + value,
+				waitForGetElementPresent(target,param).getText().equals(value));
 	}
 
 	@When("^[t|T]he text of element \"(.*?)\" should contain \"(.*?)\"$")
 	@Step("^[t|T]he text of element \"(.*?)\" should contain \"(.*?)\"$")
-	public void theTextElementShouldContainValue(String target, String value) throws Throwable {
-		Assert.assertTrue(waitForGetElementPresent(target).getText() + " does not contain " + value,
-				waitForGetElementPresent(target).getText().contains(value));
+	public void theTextElementShouldContainValue(String target, String value,String...param) throws Throwable {
+		Assert.assertTrue(waitForGetElementPresent(target,param).getText() + " does not contain " + value,
+				waitForGetElementPresent(target,param).getText().contains(value));
 	}
 
 	@When("^[t|T]he text of element \"(.*?)\" should not contain \"(.*?)\"$")
 	@Step("^[t|T]he text of element \"(.*?)\" should not contain \"(.*?)\"$")
-	public void theTextElementShouldNotContainValue(String target, String value) throws Throwable {
-		Assert.assertFalse(waitForGetElementPresent(target).getText() + " contain " + value,
-				waitForGetElementPresent(target).getText().contains(value));
+	public void theTextElementShouldNotContainValue(String target, String value,String...param) throws Throwable {
+		Assert.assertFalse(waitForGetElementPresent(target,param).getText() + " contain " + value,
+				waitForGetElementPresent(target,param).getText().contains(value));
 	}
 
 	@When("^[t|T]he text \"([^\"]*)\" should be shown$")
@@ -82,23 +82,28 @@ public class VerificationSteps extends PageCore {
 
 	@When("^[t|T]he element \"([^\"]*)\" should be shown$")
 	@Step("^[t|T]he element \"([^\"]*)\" should be shown$")
-	public void theElementShouldBeShown(String element) throws Throwable {
-		Assert.assertNotNull("The element " + element + " is not shown on page", waitForGetElementPresent(element));
+	public void theElementShouldBeShown(String element, String...param) throws Throwable {
+		Assert.assertNotNull("The element " + element + " is not shown on page", waitForGetElementPresent(element,param));
 	}
 
 	@When("^[t|T]he element \"([^\"]*)\" should not be shown$")
 	@Step("^[t|T]he element \"([^\"]*)\" should not be shown$")
-	public void theElementShouldNotBeShown(String element) throws Throwable {
-		Assert.assertNull("The element " + element + " is shown on page", waitForGetElementPresent(element));
+	public void theElementShouldNotBeShown(String element,String...param) throws Throwable {
+		Assert.assertNull("The element " + element + " is shown on page", waitForGetElementPresent(element,param));
 	}
 
+	@When("^[t|T]he number of element \"([^\"]*)\" should be (\\d+)$")
+	@Step("^[t|T]he number of element \"([^\"]*)\" should be (\\d+)$")
+	public void theNumberOfElementShouldBe(String element,int arg1,String...param) throws Throwable {
+		Assert.assertEquals(element + " is enabled ", waitForGetElementsPresent(element,param), Integer.valueOf(arg1));
+	}
+	
 	@When("^[p|P]age should be redirected to the \"([^\"]*)\"(?: page| screen)?$")
 	@Step("^[p|P]age should be redirected to the \"([^\"]*)\"(?: page| screen)?$")
-	public void iShouldBeRedirectedToPage(String arg1) throws Throwable {
-		String currentUrl = getDriver().getCurrentUrl().toLowerCase().trim();
-		String expectedUrl = (baseUrl.substring(baseUrl.indexOf("://") + 3)
-				+ ("/" + arg1.replace(" ", "").toLowerCase()).replace("//", "/")).trim();
-		TestLogger.info("currentUrl is " + currentUrl);
+	public void iShouldBeRedirectedToPage(String url) throws Throwable {
+		String currentUrl = getCurrentUrl().toLowerCase().trim();
+		TestLogger.info("currentUrl is " + getCurrentUrl());
+		String expectedUrl = url.substring(baseUrl.indexOf("://") + 3).replace("//", "/").trim();
 		TestLogger.info("expectedUrl is " + expectedUrl);
 		Assert.assertEquals(currentUrl + " does not contain " + expectedUrl, currentUrl.contains(expectedUrl), true);
 

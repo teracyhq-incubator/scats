@@ -166,9 +166,9 @@ public class MainAction extends ScenarioSteps {
 	 * @param text
 	 */
 	@Step
-	public String sendKey(String target, String text) {
+	public String sendKey(String target, String text,String...param) {
 		text = pc.getActualString(text);
-		WebElement elem = pc.waitForGetElementPresent(target);
+		WebElement elem = pc.waitForGetElementPresent(target,param);
 		elem.clear();
 		elem.sendKeys(text);
 		return text;

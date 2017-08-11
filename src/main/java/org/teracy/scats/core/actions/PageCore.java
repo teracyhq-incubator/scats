@@ -50,6 +50,24 @@ public class PageCore extends PageObject {
 	}
 
 	/**
+	 * switch to iframe
+	 * 
+	 * @param iframeName
+	 * @throws Throwable 
+	 */
+	public void switchToIFrame(String iframeName) throws Throwable {
+		WebElement webElement = waitForGetElementPresent(iframeName);
+		getDriver().switchTo().frame(webElement);
+		pause(2000);
+	}
+
+	/**
+	 * switch back to paren frame
+	 */
+	public void swichBackToParentFrame() {
+		getDriver().switchTo().parentFrame();
+	}
+	/**
 	 * open the page
 	 * 
 	 * @throws IOException
@@ -61,6 +79,7 @@ public class PageCore extends PageObject {
 		config = LocatorMap.loadConfigSys();
 		timeout = Integer.valueOf(getConfig("timeout"));
 		serverMail = getConfig("servermail");
+		baseUrl = getConfig("webdriver.base.url");
 		isUsingServerMail = Boolean.valueOf(getConfig("isusingservermail"));
 		if (!getConfig("webdriver.driver").contains("appium"))
 			maximizeTheWindow();
@@ -236,6 +255,34 @@ public class PageCore extends PageObject {
 		TestLogger.warn("Can not find element " + getObject(locator));
 		return null;
 	}
+	
+	/**
+	 * get element
+	 * 
+	 * @param target
+	 * @param param
+	 * @return null if element is not present
+	 */
+	public Integer waitForGetElementsPresent(String target, String... param) {
+		String locator = null;
+		locator = LocatorMap.getActualValueFromElementList(target.replace(" ", "").toLowerCase()).toString();
+		if (param.length > 0) {
+			for (int i = 0; i < param.length; i++) {
+				TestLogger.info(target + ": " + locator);
+				locator = locator.replace("$param" + String.valueOf(i + 1), param[i]);
+			}
+		}
+		TestLogger.info(target + ": " + locator);
+		try {
+			WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
+			wait.until(ExpectedConditions.presenceOfElementLocated(getObject(locator)));
+			return getDriver().findElements(getObject(locator)).size();
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		TestLogger.warn("Can not find element " + getObject(locator));
+		return 0;
+	}
 
 	/**
 	 * get visiblity of element
@@ -322,8 +369,8 @@ public class PageCore extends PageObject {
 	 * @param target
 	 * @return
 	 */
-	public boolean isEnabled(String target) {
-		return waitForGetElementPresent(target).isEnabled();
+	public boolean isEnabled(String target, String...param) {
+		return waitForGetElementPresent(target,param).isEnabled();
 	}
 
 	/**
@@ -332,8 +379,8 @@ public class PageCore extends PageObject {
 	 * @param target
 	 * @return
 	 */
-	public boolean isSelected(String target) {
-		return waitForGetElementPresent(target).isSelected();
+	public boolean isSelected(String target,String...param) {
+		return waitForGetElementPresent(target,param).isSelected();
 	}
 
 	/**
@@ -342,8 +389,8 @@ public class PageCore extends PageObject {
 	 * @param target
 	 * @return
 	 */
-	public boolean isDisplay(String target) {
-		return waitForGetElementPresent(target).isDisplayed();
+	public boolean isDisplay(String target,String...param) {
+		return waitForGetElementPresent(target,param).isDisplayed();
 	}
 
 	/**
@@ -395,5 +442,14 @@ public class PageCore extends PageObject {
 		}
 		TestLogger.warn("Can not find text " + LocatorMap.getActualValueFromElementList(text).toString());
 		return false;
+	}
+	
+	/**
+	 * get current url
+	 * @return
+	 */
+	public String getCurrentUrl(){
+		TestLogger.info(getDriver().getCurrentUrl());
+		return getDriver().getCurrentUrl();
 	}
 }
