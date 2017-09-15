@@ -8,7 +8,7 @@ import org.teracy.scats.utils.DateTime;
 import org.teracy.scats.utils.RandomData;
 import org.teracy.scats.utils.TestLogger;
 
-import cucumber.api.java.en.When;
+import cuke4duke.annotation.I18n.EN.When;
 import net.thucydides.core.annotations.Step;
 
 public class StoreValueSteps extends PageCore {

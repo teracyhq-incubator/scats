@@ -3,10 +3,15 @@ package scenariosteps;
 import org.teracy.scats.core.steps.BaseSteps;
 import org.teracy.scats.core.steps.MainActionSteps;
 
-import cucumber.api.java.en.When;
+import cuke4duke.annotation.I18n.EN.When;
+import cuke4duke.StepMother;
 import net.thucydides.core.annotations.Steps;
 
-public class RegisterDemoSteps {
+public class RegisterDemoSteps extends cuke4duke.Steps{
+	public RegisterDemoSteps(StepMother stepMother) {
+       super(stepMother);
+    }
+	
 	@Steps
 	MainActionSteps mainActionSteps;
 	
@@ -15,10 +20,11 @@ public class RegisterDemoSteps {
 	
 	@When("^register demo step$")
 	public void register_demo() throws Throwable {
-		mainActionSteps.enterIntoFieldWithValue("{!auto,s46}","demo.firstname");
-		mainActionSteps.enterIntoFieldWithValue("{!auto,s46}","demo.lastname");
-		mainActionSteps.enterIntoFieldWithValue("{!auto,s46}","demo.password");
-		mainActionSteps.enterIntoFieldWithValue("{!auto,s46}","demo.confirmpassword");
+		When("^fill value \"{!auto,s46}\" to the field \"demo.firstname\"$");
+		When("^fill value \"{!auto,s46}\" to the field \"demo.lastname\"$");
+		When("^fill value \"{!auto,s46}\" to the field \"demo.password\"$");
+		When("^fill value \"{!auto,s46}\" to the field \"demo.confirmpassword\"$");
+		
 		mainActionSteps.enterIntoFieldWithValue("{N10}","demo.phone");
 		mainActionSteps.enterIntoFieldWithValue("{!auto,s3,N8}}","demo.username");
 		mainActionSteps.enterIntoFieldWithValue("{!auto,s5,!@,s4,!.,s4}","demo.email");

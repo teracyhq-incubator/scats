@@ -7,7 +7,7 @@ import org.teracy.scats.core.actions.MainAction;
 import org.teracy.scats.core.actions.PageCore;
 import org.teracy.scats.utils.TestLogger;
 
-import cucumber.api.java.en.When;
+import cuke4duke.annotation.I18n.EN.When;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 
