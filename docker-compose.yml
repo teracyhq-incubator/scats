@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+
+  hub:
+    image: "${DOCKER_IMAGE_HUB:-selenium/hub:3.4.0}"
+    environment:
+      VIRTUAL_HOST: hub.teracy.dev
+      HTTPS_METHOD: noredirect # support both http and https
+    ports:
+      - "4444"
+    network_mode: bridge
+
+  firefox:
+    image: "${DOCKER_IMAGE_FIREFOX:-selenium/node-firefox-debug:3.4.0}"
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - "5900"
+    depends_on:
+      - hub
+    links:
+      - hub
+    network_mode: bridge
+
+  chrome:
+    image: "${DOCKER_IMAGE_CHROME:-selenium/node-chrome-debug:3.4.0}"
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - "5900"
+    depends_on:
+      - hub
+    links:
+      - hub
+    network_mode: bridge
+
+  test:
+    image: "${DOCKER_IMAGE_TEST:-maven:3.3.9-jdk-8}"
+    working_dir: /opt/app
+    command: mvn clean test -Dwebdriver.remote.url=http://hub:4444/wd/hub -Dwebdriver.remote.driver=chrome -Dwebdriver.base.url=http://demoqa.com
+    volumes:
+      - /home/vagrant/.m2:/root/.m2
+      - .:/opt/app
+    depends_on:
+      - hub
+    links:
+      - hub
+    network_mode: bridge

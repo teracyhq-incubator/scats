@@ -1,0 +1,21 @@
+*.log
+*.swp
+*.pyc
+.DS_Store
+Thumbs.db
+node_modules
+.tmp
+.sass-cache
+dist
+.idea
+*.iml
+.project
+org.eclipse.core.resources.prefs
+/infinitest.filters
+# e2e
+target/
+!.gitkeep
+.classpath
+.settings/
+src/test/java/runner/
+src/test/resources/tempfeatures/
